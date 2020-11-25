@@ -1,8 +1,10 @@
 
 
 <div class="row">
+
+
   <div class="column">
-    <div class="container" style="width: 100%;">
+<div class="container" style="width: 100%;">
       <div class="panel-group">
         <div class="panel panel-info">
           <div class="panel-heading" style="text-align: center">
@@ -15,32 +17,22 @@
       </div>
   </div>
 
-
   <div class="column">
 
     <select class="form-control input-sm" id="election_years" (change)="changeYear()">
       <option *ngFor="let election of elections" [value]="election.year">{{election.year}}</option>
     </select>
 
-    <div class="legend" style="padding-top: 2%;">
-      <igx-item-legend #legend123 height="100px" width="100px">
-      </igx-item-legend>
-    </div>
-
     <div style="text-align: center;">
       <h2>Popular Vote Share</h2>
     </div>
-    
-    <div style="display:block; width: 100%;  height: 100%; position: relative;">
-      <igx-pie-chart height="500px" width="100%"
-      [dataSource]="data"
-      labelMemberPath="Label"
-      valueMemberPath="Value"
-      othersCategoryThreshold="2"
-      legendLabelMemberPath="Label2"
-      (sliceClick)="pieSliceClickEvent($event)" 
-      [legend]="legend123">
-    </igx-pie-chart>
+
+    <div style="height:20%; display: block;">
+      <ngx-charts-pie-chart 
+      [results]="data"
+      (select)="onSelect($event)"
+      [labels]="true" >
+      </ngx-charts-pie-chart>
     </div>
 
     <table class="table table-bordered table-striped mb-0" style="font-size:11px">
@@ -65,7 +57,6 @@
 
   </div>
 
-
   <div class="column">
     <div class="container" [hidden]="!selected_candidate"  style="width: 100%;">
       <div class="panel-group">
@@ -79,7 +70,5 @@
       </div>
       </div>
   </div>
-</div> 
 
-
-
+</div>
