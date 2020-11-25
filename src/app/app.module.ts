@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { IgxDoughnutChartModule, IgxPieChartModule, IgxLegendModule, IgxItemLegendModule } from 'igniteui-angular-charts';
 
 import { AppComponent } from './app.component';
 
@@ -8,7 +9,11 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    IgxDoughnutChartModule,
+    IgxPieChartModule,
+		IgxLegendModule,
+		IgxItemLegendModule
   ],
   providers: [],
   bootstrap: [AppComponent]
