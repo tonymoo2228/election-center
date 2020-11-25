@@ -1,16 +1,12 @@
-
-
 <div class="row">
-
-
   <div class="column">
-<div class="container" style="width: 100%;">
+    <div class="container" style="width: 100%;">
       <div class="panel-group">
         <div class="panel panel-info">
           <div class="panel-heading" style="text-align: center">
-            <a href={{election_link}}>The Election of {{current_election.year}}</a>
+            <a href={{electionLink}}>The Election of {{currentElection.year}}</a>
           </div>
-          <div class="panel-body" style="font-size: small;" [innerHTML]="current_election.blurb">
+          <div class="panel-body" style="font-size: small;" [innerHTML]="currentElection.blurb">
           </div>
         </div>
       </div>
@@ -18,7 +14,6 @@
   </div>
 
   <div class="column">
-
     <select class="form-control input-sm" id="election_years" (change)="changeYear()">
       <option *ngFor="let election of elections" [value]="election.year">{{election.year}}</option>
     </select>
@@ -29,7 +24,8 @@
 
     <div style="height:20%; display: block;">
       <ngx-charts-pie-chart 
-      [results]="data"
+      [results]="currentCandidates"
+      [view]="view"
       (select)="onSelect($event)"
       [labels]="true" >
       </ngx-charts-pie-chart>
@@ -38,33 +34,32 @@
     <table class="table table-bordered table-striped mb-0" style="font-size:11px">
       <thead>
           <tr>
-              <th>Candidate</th>
-              <th>Party</th>
-              <th>Vote Number</th>
-              <th>Vote Percentage</th>
+            <th>Candidate</th>
+            <th>Party</th>
+            <th>Vote Number</th>
+            <th>Vote Percentage</th>
           </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of percentages">
-          <td *ngIf="row.name == current_election.winner"><mark>{{row.name}}</mark></td>
-          <td *ngIf="row.name != current_election.winner">{{row.name}}</td>
+        <tr *ngFor="let row of currentCandidates">
+          <td *ngIf="row.fullName == currentElection.winner">{{row.fullName}} <span>&#10003;</span> </td>
+          <td *ngIf="row.fullName != currentElection.winner">{{row.fullName}} </td>
           <td>{{row.party}}</td>
-          <td>{{row.votes}}</td>
+          <td>{{row.value}}</td>
           <td>{{row.percent}}%</td>
-      </tr>
+        </tr>
       </tbody>
-  </table> 
-
+    </table> 
   </div>
 
   <div class="column">
-    <div class="container" [hidden]="!selected_candidate"  style="width: 100%;">
+    <div class="container" [hidden]="!selectedCandidate"  style="width: 100%;">
       <div class="panel-group">
         <div class="panel panel-info">
           <div class="panel-heading" style="text-align: center;">
-            <a href={{current_candidate_link}}>{{current_candidate.name}}</a>
+            <a href={{currentCandidateLink}}>{{currentCandidate.name}}</a>
           </div>
-          <div class="panel-body" style="font-size: small;" [innerHTML]="current_candidate.blurb">
+          <div class="panel-body" style="font-size: small;" [innerHTML]="currentCandidate.blurb">
           </div>
         </div>
       </div>
