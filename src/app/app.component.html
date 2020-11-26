@@ -42,8 +42,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let row of currentCandidates">
-          <td *ngIf="row.fullName == currentElection.winner">{{row.fullName}} <span>&#10003;</span> </td>
-          <td *ngIf="row.fullName != currentElection.winner">{{row.fullName}} </td>
+          <td *ngIf="row.name == currentElection.winner.substring(currentElection.winner.lastIndexOf(' ') + 1, currentElection.winner.length)">{{row.fullName}} <span>&#10003;</span> </td>
+          <td *ngIf="row.name != currentElection.winner.substring(currentElection.winner.lastIndexOf(' ') + 1, currentElection.winner.length)">{{row.fullName}} </td>
           <td>{{row.party}}</td>
           <td>{{row.value}}</td>
           <td>{{row.percent}}%</td>
