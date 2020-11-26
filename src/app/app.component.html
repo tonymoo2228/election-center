@@ -18,6 +18,15 @@
       <option *ngFor="let election of elections" [value]="election.year">{{election.year}}</option>
     </select>
 
+    <div class = "row">
+      <div class="columnHalf" style="display: flex; justify-content: center; align-items: center;">
+        <button class="btn btn-secondary" (click)="previousElection()" [disabled]="currentElection.year == '1796'">Previous Election</button>
+      </div>
+      <div class="columnHalf" style="display: flex; justify-content: center; align-items: center;">
+        <button class="btn btn-secondary" (click)="nextElection()" [disabled]="currentElection.year == '2016'">Next Election</button>
+      </div>
+    </div>
+
     <div style="text-align: center;">
       <h2>Popular Vote Share</h2>
     </div>
@@ -27,6 +36,7 @@
       [results]="currentCandidates"
       [view]="view"
       (select)="onSelect($event)"
+      [animations]="false"
       [labels]="true" >
       </ngx-charts-pie-chart>
     </div>

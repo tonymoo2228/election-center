@@ -4,6 +4,12 @@
     height: 100%;
     display: block;
   }
+
+.columnHalf {
+    float: left;
+    width: 50%;
+    display: block;
+  }
   
   /* Clear floats after the columns */
   .row:after {

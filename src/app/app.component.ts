@@ -85,10 +85,16 @@ export class AppComponent implements OnInit {
   {
     this.selectedCandidate = false;
     const newYear = ((document.getElementById("election_years") as HTMLInputElement).value);
+    this.changeYearTo(newYear);
+  }
+
+  changeYearTo( newYear )
+  {
     this.elections.forEach( election => {
       if ( election.year == newYear ) this.currentElection = election;
     });
 
+    (document.getElementById("election_years") as HTMLInputElement).value = this.currentElection.year;
     this.electionLink = 'https://en.wikipedia.org/wiki/' + this.currentElection.year + '_United_States_presidential_election'
     this.setCurrentCandidates();
   }
@@ -103,6 +109,16 @@ export class AppComponent implements OnInit {
         this.currentCandidateLink = "https://en.wikipedia.org" + candidate.link;
       }
     });
+  }
+
+  nextElection()
+  {
+    this.changeYearTo(this.currentElection.year + 4);
+  }
+
+  previousElection()
+  {
+    this.changeYearTo(this.currentElection.year - 4);
   }
 }
 
